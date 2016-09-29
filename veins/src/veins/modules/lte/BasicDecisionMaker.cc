@@ -41,7 +41,7 @@ void BasicDecisionMaker::initialize(int stage) {
         dontCareMessagesSent = registerSignal("dontCareMessagesSent");
         DSRCMessagesReceived = registerSignal("DSRCMessagesReceived");
         lteMessagesReceived = registerSignal("lteMessagesReceived");
-            fromApplication = findGate("fromApplication");
+        fromApplication = findGate("fromApplication");
         toApplication = findGate("toApplication");
         fromLte = findGate("fromLte");
         toLte = findGate("toLte");
@@ -139,37 +139,4 @@ void BasicDecisionMaker::handlePositionUpdate(cObject* obj) {
 
 void BasicDecisionMaker::sendWSM(WaveShortMessage* wsm) {
     sendDelayedDown(wsm,individualOffset);
-}
-
-void BasicDecisionMaker::sendLteMessage(HeterogeneousMessage* msg) {
-	MobilityBase* eNodeBMobility = dynamic_cast<MobilityBase*>(
-			getModuleByPath("scenario.eNodeB1")->getSubmodule("mobility")
-			);
-	ASSERT(eNodeBMobility);
-	AnnotationManager* annotations = AnnotationManagerAccess().getIfExists();
-	annotations->scheduleErase(0.25, annotations->drawLine(
-			eNodeBMobility->getCurrentPosition(), getPosition(), "red")
-			);
-	send(msg, toLte);
-}
-
-void BasicDecisionMaker::sendDSRCMessage(HeterogeneousMessage* msg) {
-	msg->addBitLength(headerLength);
-	msg->setChannelNumber(Channels::CCH);
-	msg->setPsid(0);
-	// msg->setPriority(dataPriority);
-	msg->setWsmVersion(2);
-	msg->setTimestamp(simTime());
-	msg->setRecipientAddress(BROADCAST);
-	msg->setSenderPos(currentPosition);
-	msg->setSerial(2);
-	sendWSM(msg);
-}
-
-void BasicDecisionMaker::sendDontCareMessage(HeterogeneousMessage* msg) {
-	if (dblrand() > 0.5) {
-		sendLteMessage(msg);
-	} else {
-		sendDSRCMessage(msg);
-	}
 }

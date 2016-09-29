@@ -28,11 +28,14 @@ void SimpleApp::initialize(int stage) {
 		infoLogging = par("infoLogging");
 		toDecisionMaker = findGate("toDecisionMaker");
 		fromDecisionMaker = findGate("fromDecisionMaker");
+
 		cModule *tmpMobility = getParentModule()->getSubmodule("veinsmobility");
 		Veins::TraCIMobility* mobility = dynamic_cast<Veins::TraCIMobility *>(tmpMobility);
 		ASSERT(mobility);
 		sumoId = mobility->getExternalId();
-		scheduleAt(simTime() + 0.5, new cMessage("Send"));
+
+		/* Don't schedule at the same time to prevent synchronization */
+		scheduleAt(simTime() + uniform(0, 1), new cMessage("Send"));
 	}
 }
 

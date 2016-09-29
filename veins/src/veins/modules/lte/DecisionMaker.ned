@@ -22,6 +22,7 @@ simple DecisionMaker extends BaseWaveApplLayer {
 		@statistic[DSRCMessagesReceived](title="DSRCMessagesReceived"; source="DSRCMessagesReceived"; record=vector, stats, histogram);
 		@signal[lteMessagesReceived](type="long");
 		@statistic[lteMessagesReceived](title="lteMessagesReceived"; source="lteMessagesReceived"; record=vector, stats, histogram);
+
     gates:
         input fromApplication;
         output toApplication;

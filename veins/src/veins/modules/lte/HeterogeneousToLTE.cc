@@ -78,8 +78,10 @@ void HeterogeneousToLTE::handleMessage(cMessage *msg) {
 }
 
 HeterogeneousToLTE::HeterogeneousToLTE() {
+	/* Empty */
 }
 
 HeterogeneousToLTE::~HeterogeneousToLTE() {
+	/* Empty */
 }
 
