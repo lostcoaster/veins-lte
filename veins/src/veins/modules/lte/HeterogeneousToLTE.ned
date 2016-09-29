@@ -5,6 +5,7 @@ simple HeterogeneousToLTE
     parameters:
         int ltePort = default(4242);
         bool debug = default(false);
+        bool infoLogging = default(true);
     gates:
         output toApplication;
         input fromApplication;

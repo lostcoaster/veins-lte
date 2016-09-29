@@ -18,6 +18,7 @@ simple ExampleDecisionMaker like IBaseApplLayer {
 		@statistic[lteMessagesReceived](title="lteMessagesReceived"; source="lteMessagesReceived"; record=vector, stats, histogram);
 		int headerLength = default(88bit) @unit(bit);
 		double maxOffset = default(0s) @unit(s);
+		bool infoLogging = default(true);
 
     gates:
         input fromApplication;

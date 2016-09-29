@@ -55,6 +55,7 @@ void BasicDecisionMaker::initialize(int stage) {
         maxOffset = par("maxOffset").doubleValue();
         individualOffset = dblrand() * maxOffset;
         findHost()->subscribe(mobilityStateChangedSignal, this);
+        infoLogging = par("infoLogging").boolValue();
     }
 }
 
@@ -68,9 +69,7 @@ void BasicDecisionMaker::handleMessage(cMessage* msg){
         HeterogeneousMessage *heterogeneousMessage =
                 dynamic_cast<HeterogeneousMessage *>(msg);
         if (!heterogeneousMessage) {
-            std::cout << "Message " << msg->getFullName()
-                      << " is not a HeterogeneousMessage, but a "
-                      << msg->getClassName() << std::endl;
+            WARN_ID("Message " << msg->getFullName() << " is not a HeterogeneousMessage, but a " << msg->getClassName());
             delete msg;
             return;
         }
@@ -103,7 +102,7 @@ void BasicDecisionMaker::handleLowerMessage(cMessage* msg){
 	    } else if (messageKind == UDP_I_ERROR) {
 	        msg->setKind(CAM_ERROR_TYPE);
 	    } else {
-	        WARN_DM("Unknown message kind " << messageKind);
+	        WARN_ID("Unknown message of kind " << messageKind);
 	    }
 	    emit(lteMessagesReceived, 1);
 		MobilityBase* eNodeBMobility = dynamic_cast<MobilityBase*>(getModuleByPath("scenario.eNodeB1")->getSubmodule("mobility"));
@@ -121,8 +120,7 @@ void BasicDecisionMaker::handleLowerMessage(cMessage* msg){
 		emit(DSRCMessagesReceived, 1);
 	    send(msg, toApplication);
 	} else {
-	    std::cout << "Unknown arrival gate " << msg->getArrivalGate()->getFullName()
-	            << std::endl;
+	    WARN_ID("Unknown arrival gate " << msg->getArrivalGate()->getFullName());
 	    delete msg;
 	}
 }

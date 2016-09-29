@@ -28,6 +28,7 @@
 #include "IPv4Address.h"
 #include "veins/modules/heterogeneous/messages/HeterogeneousMessage_m.h"
 #include "veins/modules/mobility/traci/TraCIScenarioManager.h"
+#include "veins/base/utils/SimpleLogger.h"
 
 /*
  * @brief
@@ -45,6 +46,7 @@ class SimpleServerApp: public ApplicationBase {
 		TraCIScenarioManager* manager;
 		long receivedMessages;
 		bool debug;
+		bool infoLogging;
 
 	public:
 		SimpleServerApp();

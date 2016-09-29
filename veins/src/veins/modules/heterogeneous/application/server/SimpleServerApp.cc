@@ -30,6 +30,7 @@ void SimpleServerApp::initialize(int stage){
 	ApplicationBase::initialize(stage);
 	if(stage == 0){
 		debug = par("debug").boolValue();
+		infoLogging = par("infoLogging").boolValue();
 		receivedMessages = 0;
 		manager = TraCIScenarioManagerAccess().get();
 		ASSERT(manager);
@@ -37,8 +38,7 @@ void SimpleServerApp::initialize(int stage){
 }
 
 void SimpleServerApp::finish(){
-	std::cout << "[SimpleServerApp] Received " << receivedMessages << " messages via LTE."
-		<< std::endl;
+	INFO_ID("Received " << receivedMessages << " messages via LTE.");
 }
 
 void SimpleServerApp::handleMessageWhenUp(cMessage *msg){
@@ -46,7 +46,7 @@ void SimpleServerApp::handleMessageWhenUp(cMessage *msg){
 	if(heterogeneousMessage){
 		receivedMessages++;
 		std::string sourceAddress = heterogeneousMessage->getSourceAddress();
-		std::cout << "[SimpleServerApp, " << simTime() << "] Received Heterogeneous Message from " << sourceAddress << std::endl;
+		INFO_ID("Received Heterogeneous Message from " << sourceAddress);
 
 		/*
 		 * Server replies with a simple message. Note that no additional parameters (like exact
@@ -56,7 +56,7 @@ void SimpleServerApp::handleMessageWhenUp(cMessage *msg){
 		HeterogeneousMessage *reply = new HeterogeneousMessage("Server Reply");
 		IPv4Address address = manager->getIPAddressForID(sourceAddress);
 		reply->setSourceAddress("server");
-		std::cout << "[SimpleServerApp, " << simTime() << "] Sending Message back to " << address << std::endl;
+		INFO_ID("Sending Message back to " << address);
 		socket.sendTo(reply, address, 4242);
 	}
 	delete msg;

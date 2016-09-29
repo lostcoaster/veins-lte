@@ -30,13 +30,10 @@
 #include "veins/base/connectionManager/ChannelAccess.h"
 #include "MobilityBase.h"
 #include "veins/modules/utility/Consts80211p.h"
+#include "veins/base/utils/SimpleLogger.h"
 
 using Veins::AnnotationManager;
 using Veins::AnnotationManagerAccess;
-
-#define PRINT_DM(x) std::cout << "[DecisionMaker, " << simTime() << "] " << x << std::endl;
-#define WARN_DM(x) std::cout << "[DecisionMaker, " << simTime() << " WARNING] " << x << std::endl;
-#define AFTERWARMUP(x) if (simTime() >= simulation.getWarmupPeriod()){ x }
 
 const simsignalwrap_t mobilityStateChangedSignal = simsignalwrap_t(MIXIM_SIGNAL_MOBILITY_CHANGE_NAME);
 
@@ -66,6 +63,7 @@ class BasicDecisionMaker: public BaseApplLayer {
         Coord currentPosition;
         double maxOffset;
         double individualOffset;
+        bool infoLogging;
 
         // statistic collection
         simsignal_t DSRCMessagesSent;

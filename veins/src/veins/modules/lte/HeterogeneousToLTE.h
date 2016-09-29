@@ -26,6 +26,7 @@
 #include "IPvXAddressResolver.h"
 #include "veins/modules/mobility/traci/TraCIScenarioManager.h"
 #include "veins/modules/heterogeneous/messages/HeterogeneousMessage_m.h"
+#include "veins/base/utils/SimpleLogger.h"
 
 #define BROADCAST -1
 
@@ -52,6 +53,7 @@ class HeterogeneousToLTE: public cSimpleModule {
 		UDPSocket socket; /** The UDP socket for communication. */
 		Veins::TraCIScenarioManager* manager;  /** The scenario manager. */
 		bool debug;
+		bool infoLogging;
 
 	public:
 		HeterogeneousToLTE();

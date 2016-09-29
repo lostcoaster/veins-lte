@@ -25,6 +25,7 @@
 #include "veins/modules/heterogeneous/messages/HeterogeneousMessage_m.h"
 #include "veins/modules/mobility/traci/TraCIScenarioManager.h"
 #include "veins/modules/mobility/traci/TraCIMobility.h"
+#include "veins/base/utils/SimpleLogger.h"
 
 using Veins::TraCIScenarioManager;
 using Veins::TraCIScenarioManagerAccess;
@@ -43,6 +44,8 @@ protected:
 	int toDecisionMaker;
 	int fromDecisionMaker;
 	std::string sumoId;
+	bool debug;
+	bool infoLogging;
 
 protected:
 	virtual void initialize(int stage);

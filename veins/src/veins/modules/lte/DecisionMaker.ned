@@ -8,6 +8,10 @@ simple DecisionMaker extends BaseWaveApplLayer {
 
 	parameters:
 		@class(DecisionMaker);
+
+		bool debug = default(false);
+		bool infoLogging = default(true);
+
 		@signal[DSRCMessagesSent](type="long");
 		@statistic[DSRCMessagesSent](title="DSRCMessagesSent"; source="DSRCMessagesSent"; record=vector, stats, histogram);
 		@signal[lteMessagesSent](type="long");

@@ -24,6 +24,8 @@ Define_Module(SimpleApp);
 
 void SimpleApp::initialize(int stage) {
 	if (stage == 0) {
+		debug = par("debug").boolValue();
+		infoLogging = par("infoLogging");
 		toDecisionMaker = findGate("toDecisionMaker");
 		fromDecisionMaker = findGate("fromDecisionMaker");
 		cModule *tmpMobility = getParentModule()->getSubmodule("veinsmobility");
@@ -52,7 +54,7 @@ void SimpleApp::handleMessage(cMessage *msg) {
 		std::map<std::string, cModule*>::iterator it = hosts.begin();
 		std::advance(it, intrand(hosts.size()));
 		std::string destination("node[" + it->first + "]");
-		std::cout << "[" << sumoId << ", " << simTime() <<  "] Sending message to " << destination << std::endl;
+		INFO_ID("Sending message to " << destination);
 		testMessage->setDestinationAddress(destination.c_str());
 
 		/* Finish the message and send it */
@@ -64,7 +66,7 @@ void SimpleApp::handleMessage(cMessage *msg) {
 		 * and is then simply handed to the decision maker.
 		 */
 		if(dblrand() < 0.25){
-			std::cout << "[" << sumoId << ", " << simTime() <<  "] Sending message also to server" << std::endl;
+			INFO_ID("Sending message also to server");
 			HeterogeneousMessage* serverMessage = new HeterogeneousMessage();
 			serverMessage->setName("Server Message Test");
 			testMessage->setByteLength(10);
@@ -77,6 +79,6 @@ void SimpleApp::handleMessage(cMessage *msg) {
 		scheduleAt(simTime() + 1, new cMessage("Send"));
 	} else {
 		HeterogeneousMessage *testMessage = dynamic_cast<HeterogeneousMessage *>(msg);
-		std::cout << "[" << getParentModule()->getFullPath() << ", " << simTime() << "] Received message " << msg->getFullPath() << "< from " << testMessage->getSourceAddress() << std::endl;
+		INFO_ID("Received message " << msg->getFullName() << " from " << testMessage->getSourceAddress());
 	}
 }
