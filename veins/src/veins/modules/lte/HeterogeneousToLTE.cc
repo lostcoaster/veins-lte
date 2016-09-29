@@ -53,6 +53,12 @@ void HeterogeneousToLTE::handleMessage(cMessage *msg) {
 			delete msg;
 			return;
 		} else {
+			cModule* destination = simulation.getModuleByPath(destinationAddress.c_str());
+			if(!destination){
+				WARN_ID("Can't find a module with destination " << destinationAddress << ", not sending message!");
+				delete msg;
+				return;
+			}
 			IPv4Address address = IPvXAddressResolver().resolve(destinationAddress.c_str()).get4();
 			if (address.isUnspecified()) {
 				address = manager->getIPAddressForID(destinationAddress);
