@@ -21,7 +21,7 @@
 
 import org.car2x.veins.base.connectionManager.ConnectionManager;
 import org.car2x.veins.base.modules.BaseWorldUtility;
-import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerLaunchd;
+import org.car2x.veins.modules.mobility.traci.TraCIScenarioManagerForker;
 import org.car2x.veins.modules.obstacle.ObstacleControl;
 import org.car2x.veins.modules.world.annotations.AnnotationManager;
 
@@ -63,7 +63,7 @@ module Highway
                 playgroundSizeZ = playgroundSizeZ;
                 @display("p=34,31;i=misc/globe");
         }
-        manager: TraCIScenarioManagerLaunchd {
+        manager: TraCIScenarioManagerForker {
             parameters:
                 @display("p=34,206");
         }
