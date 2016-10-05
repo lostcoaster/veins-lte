@@ -4,8 +4,8 @@ Veins LTE adds LTE support to the vehicular network simulation framework [Veins]
 
 ### Prerequisites
 
-* Install [OMNeT++](http://www.omnetpp.org/).
-* Install [SUMO](http://www.dlr.de/ts/en/desktopdefault.aspx/tabid-9883/16931_read-41000/).
+* Install [OMNeT++](http://www.omnetpp.org/) (recommended version: 4.6).
+* Install [SUMO](http://www.dlr.de/ts/en/desktopdefault.aspx/tabid-9883/16931_read-41000/) (recommended version: 0.25.0).
 * Clone this repository (or download the zip file).
 * If you are on Linux and use the command line:
   * switch to the root of the repository and type
