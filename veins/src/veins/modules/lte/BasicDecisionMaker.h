@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2006-2014 Florian Hagenauer <hagenauer@ccs-labs.org>
+// Copyright (C) 2006-2016 Florian Hagenauer <hagenauer@ccs-labs.org>
 //
 // Documentation for these modules is at http://veins.car2x.org/
 //
