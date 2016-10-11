@@ -22,4 +22,4 @@ Veins LTE adds LTE support to the vehicular network simulation framework [Veins]
 * If you are on Windows:
   * `TODO` *(Currently there seem to be several issues with Veins LTE on Windows, we are working on them)*
 
-Further information can be found on the [Veins LTE Website](http://floxyz.at/veins-lte).
+Further information can be found on the [Veins LTE Website](http://veins-lte.car2x.org/).
