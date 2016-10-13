@@ -11,7 +11,6 @@ Veins LTE adds LTE support to the vehicular network simulation framework [Veins]
   * switch to the root of the repository and type
   * `make makefiles`
   * `make`
-  * go to the veins subdirectory and start SUMO with sumo-launchd.py. For example `./sumo-launchd.py -p 9999 -vv -c sumo-gui`
   * go to the folder `veins/examples/heterogeneous` and run the example.
 * If you are on Linux and use the OMNeT++ IDE:
   * File -> Import -> General/Existing Projects into Workspace -> Next
